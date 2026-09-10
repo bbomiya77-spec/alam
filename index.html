@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>쉬는 시간 알람 & 수업 안내 | 16:9 Classroom Display</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Google Fonts: Gowun Dodum & Fredoka for cute, readable typography -->
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, Noto Sans KR for modern clean typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- 16:9 Aspect Ratio Display Container -->
@@ -78,13 +78,13 @@
                 <svg class="progress-ring" viewBox="0 0 280 280">
                   <defs>
                     <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#38bdf8" />
-                      <stop offset="50%" stop-color="#818cf8" />
-                      <stop offset="100%" stop-color="#a78bfa" />
+                      <stop offset="0%" stop-color="#f4a261" />
+                      <stop offset="50%" stop-color="#e0a96d" />
+                      <stop offset="100%" stop-color="#b07d56" />
                     </linearGradient>
                     <linearGradient id="urgentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#fb7185" />
-                      <stop offset="100%" stop-color="#f43f5e" />
+                      <stop offset="0%" stop-color="#f4a261" />
+                      <stop offset="100%" stop-color="#e76f51" />
                     </linearGradient>
                   </defs>
                   <!-- Track -->
@@ -99,44 +99,47 @@
                 </div>
               </div>
 
-              <!-- Cute Animated Mascot Companion -->
-              <div class="mascot-companion" id="mascotCompanion">
-                <div class="mascot-bubble" id="mascotBubble">
-                  스트레칭 쭈욱~ 물 한 잔 💧
+              <!-- Modern Minimalist Focus / Break Status Widget -->
+              <div class="mascot-companion modern-status-widget" id="mascotCompanion">
+                <div class="modern-widget-header">
+                  <span class="widget-subtitle">MINDFUL BREAK</span>
+                  <div class="mascot-bubble modern-guide-chip" id="mascotBubble">
+                    스트레칭 및 수분 섭취 💧
+                  </div>
                 </div>
-                <!-- Cute SVG Mascot: Resting Kitty with Milk/Boba -->
-                <svg class="cute-mascot-svg" viewBox="0 0 160 140">
-                  <!-- Cozy Cloud Shadow -->
-                  <ellipse cx="80" cy="125" rx="60" ry="12" fill="rgba(15, 23, 42, 0.45)" />
-                  <!-- Cat Tail -->
-                  <path class="cat-tail" d="M 125 90 C 145 95, 150 70, 140 60 C 135 55, 130 65, 126 78 Z" fill="#93c5fd" />
-                  <!-- Cat Body -->
-                  <path d="M 35 110 C 25 70, 50 40, 80 40 C 110 40, 135 70, 125 110 C 120 125, 40 125, 35 110 Z" fill="#bfdbfe" />
-                  <!-- Belly Patch -->
-                  <ellipse cx="80" cy="85" rx="30" ry="24" fill="#ffffff" />
-                  <!-- Cat Ears -->
-                  <polygon points="45,45 35,15 65,35" fill="#93c5fd" />
-                  <polygon points="46,40 40,22 60,35" fill="#fbcfe8" />
-                  <polygon points="115,45 125,15 95,35" fill="#93c5fd" />
-                  <polygon points="114,40 120,22 100,35" fill="#fbcfe8" />
-                  <!-- Cute Head -->
-                  <ellipse cx="80" cy="50" rx="36" ry="30" fill="#bfdbfe" />
-                  <!-- Cheeks (Blush) -->
-                  <ellipse cx="58" cy="56" rx="6" ry="4" fill="#f472b6" opacity="0.6" />
-                  <ellipse cx="102" cy="56" rx="6" ry="4" fill="#f472b6" opacity="0.6" />
-                  <!-- Happy Eyes (Arcs) -->
-                  <path d="M 60 48 Q 67 42 74 48" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
-                  <path d="M 86 48 Q 93 42 100 48" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
-                  <!-- Tiny Nose & Mouth -->
-                  <polygon points="80,53 78,51 82,51" fill="#f472b6" />
-                  <path d="M 76 55 Q 80 58 80 55 Q 80 58 84 55" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round" />
-                  <!-- Paws holding cup -->
-                  <ellipse cx="68" cy="82" rx="7" ry="6" fill="#ffffff" />
-                  <ellipse cx="92" cy="82" rx="7" ry="6" fill="#ffffff" />
-                  <!-- Little Drink Cup with Straw -->
-                  <rect x="74" y="74" width="12" height="18" rx="3" fill="#fef08a" />
-                  <line x1="80" y1="74" x2="84" y2="64" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" />
-                </svg>
+
+                <!-- Modern Minimalist Geometric Vector Graphic -->
+                <div class="modern-graphic-container">
+                  <svg class="modern-vector-svg" viewBox="0 0 120 120" fill="none">
+                    <!-- Outer delicate calibrated dial ring -->
+                    <circle cx="60" cy="60" r="54" stroke="rgba(224, 169, 109, 0.22)" stroke-width="1.5" stroke-dasharray="4 6" />
+                    <!-- Geometric Modern Hourglass Contour -->
+                    <path d="M 38 30 L 82 30 M 38 90 L 82 90" stroke="#e0a96d" stroke-width="2.5" stroke-linecap="round" />
+                    <path d="M 42 30 C 42 50, 54 57, 60 60 C 66 57, 78 50, 78 30" stroke="#c48b52" stroke-width="2" stroke-linecap="round" />
+                    <path d="M 42 90 C 42 70, 54 63, 60 60 C 66 63, 78 70, 78 90" stroke="#c48b52" stroke-width="2" stroke-linecap="round" />
+                    <!-- Glowing amber focus particle -->
+                    <circle cx="60" cy="60" r="3.5" fill="#f4a261" />
+                    <circle cx="60" cy="74" r="5.5" fill="#e0a96d" opacity="0.85" />
+                    <circle cx="60" cy="82" r="3" fill="#faedcd" />
+                    <!-- Subtle compass ticks -->
+                    <line x1="60" y1="10" x2="60" y2="16" stroke="rgba(224, 169, 109, 0.45)" stroke-width="1.5" />
+                    <line x1="60" y1="104" x2="60" y2="110" stroke="rgba(224, 169, 109, 0.45)" stroke-width="1.5" />
+                    <line x1="10" y1="60" x2="16" y2="60" stroke="rgba(224, 169, 109, 0.45)" stroke-width="1.5" />
+                    <line x1="104" y1="60" x2="110" y2="60" stroke="rgba(224, 169, 109, 0.45)" stroke-width="1.5" />
+                  </svg>
+                </div>
+
+                <!-- Modern Routine Status List -->
+                <div class="modern-metrics-list">
+                  <div class="metric-row">
+                    <span class="metric-label">STATUS</span>
+                    <span class="metric-val" id="widgetModeVal">마인드 리셋</span>
+                  </div>
+                  <div class="metric-row">
+                    <span class="metric-label">TARGET</span>
+                    <span class="metric-val" id="widgetNextVal">집중 준비</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -174,62 +177,62 @@
             <div class="hub-header">
               <div class="hub-tabs">
                 <button class="hub-tab-btn active" data-tab="message">
-                  <span class="tab-emoji">💬</span> 수업 안내 & 문구
+                  <span class="tab-emoji">📋</span> 수업 공지 & 준비
                 </button>
                 <button class="hub-tab-btn" data-tab="image">
-                  <span class="tab-emoji">🖼️</span> 수업 이미지
+                  <span class="tab-emoji">🖼️</span> 시각 학습 자료
                 </button>
                 <button class="hub-tab-btn" data-tab="video">
-                  <span class="tab-emoji">🎬</span> 수업 영상
+                  <span class="tab-emoji">🎬</span> 시청각 영상
                 </button>
               </div>
               <div class="hub-indicator">
-                <span id="currentTabBadge">안내 모드</span>
+                <span id="currentTabBadge">공지 모드</span>
               </div>
             </div>
 
-            <!-- Tab Content 1: Message & Cute Notice Board -->
+            <!-- Tab Content 1: Modern Notice Board -->
             <div class="tab-content active" id="tabContentMessage">
               <div class="notice-board-container">
                 
                 <div class="notice-main-bubble">
-                  <div class="bubble-tag" id="noticeBadge">다음 시간 안내 📌</div>
+                  <div class="bubble-tag" id="noticeBadge">CLASS NOTICE 📌</div>
                   <h2 class="notice-main-text" id="noticeMainText">
-                    "교과서 45쪽을 펼치고 색연필을 준비해 주세요!"
+                    "교과서 45쪽 핵심 개념 및 준비물을 확인해 주세요."
                   </h2>
                   <p class="notice-sub-text" id="noticeSubText">
-                    궁금한 점은 미리 적어두면 수업 시간에 바로 질문할 수 있어요 ✨
+                    궁금한 점이나 메모는 수업 시작 시 바로 질문할 수 있도록 준비합니다 ✨
                   </p>
                 </div>
 
-                <!-- 3 Cute Activity / Stretching Cards -->
+                <!-- 3 Modern Wellness & Prep Cards -->
                 <div class="quick-tips-row">
                   <div class="tip-card">
                     <span class="tip-emoji">💧</span>
                     <div class="tip-body">
-                      <h4>수분 보충</h4>
-                      <p>시원한 물 한 모금 마셔요</p>
+                      <h4>Hydration</h4>
+                      <p>시원한 물 섭취로 뇌 활성화</p>
                     </div>
                   </div>
                   <div class="tip-card">
-                    <span class="tip-emoji">🧘‍♂️</span>
+                    <span class="tip-emoji">🧘</span>
                     <div class="tip-body">
-                      <h4>목·어깨 스트레칭</h4>
-                      <p>양팔을 위로 쭈욱 펴보기</p>
+                      <h4>Posture Reset</h4>
+                      <p>가벼운 목·어깨 이완 스트레칭</p>
                     </div>
                   </div>
                   <div class="tip-card">
-                    <span class="tip-emoji">👀</span>
+                    <span class="tip-emoji">👁️</span>
                     <div class="tip-body">
-                      <h4>눈 휴식</h4>
-                      <p>먼 산이나 창밖을 10초간 응시</p>
+                      <h4>Eye Care</h4>
+                      <p>원거리 응시로 시각 피로 완화</p>
                     </div>
                   </div>
                 </div>
 
                 <!-- Teacher Message Footer Note -->
                 <div class="notice-footer-note" id="noticeFooterNote">
-                  💡 선생님 말씀: "화장실은 미리 다녀오고 종 치기 1분 전에 자리에 앉아주세요~"
+                  💡 공지: "화장실은 미리 다녀오고, 종료 1분 전 자리에 착석해 주시기 바랍니다."
                 </div>
               </div>
             </div>
@@ -391,19 +394,19 @@
 
         <!-- Section: Background Theme Tone -->
         <div class="setting-group">
-          <h3>🎨 블루 배경 톤 미세 조정</h3>
+          <h3>🪵 모던 우드 톤 선택</h3>
           <div class="theme-options-grid">
-            <button class="theme-chip active" data-theme="midnight">
-              <span class="color-dot" style="background:#0f172a;"></span>
-              차분한 미드나이트 블루
+            <button class="theme-chip active" data-theme="walnut">
+              <span class="color-dot" style="background:#1a120c; border-color:#d4a373;"></span>
+              차분한 다크 월넛 (Dark Walnut)
             </button>
-            <button class="theme-chip" data-theme="cozy">
-              <span class="color-dot" style="background:#1e293b;"></span>
-              포근한 네이비 블루
+            <button class="theme-chip" data-theme="oak">
+              <span class="color-dot" style="background:#2c1f17; border-color:#e0a96d;"></span>
+              모던 내추럴 오크 (Natural Oak)
             </button>
-            <button class="theme-chip" data-theme="deepocean">
-              <span class="color-dot" style="background:#0b192c;"></span>
-              심해 딥오션 블루
+            <button class="theme-chip" data-theme="teak">
+              <span class="color-dot" style="background:#23170e; border-color:#bc6c25;"></span>
+              포근한 클래식 티크 (Classic Teak)
             </button>
           </div>
         </div>

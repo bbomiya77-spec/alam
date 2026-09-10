@@ -15,17 +15,17 @@
   // 기본 설정 및 상태 (Default State)
   // ==========================================
   const DEFAULT_CONFIG = {
-    classTitle: '3교시 : 즐거운 과학 시간 🧪',
+    classTitle: '3교시 : 과학 (Science) 🔬',
     defaultMinutes: 10,
     warningSoundEnabled: true,
     volume: 80,
     isMuted: false,
-    theme: 'midnight',
-    noticeMain: '"교과서 45쪽을 펼치고 색연필을 준비해 주세요!"',
-    noticeSub: '궁금한 점은 미리 적어두면 수업 시간에 바로 질문할 수 있어요 ✨',
-    noticeFooter: '💡 선생님 말씀: "화장실은 미리 다녀오고 종 치기 1분 전에 자리에 앉아주세요~"',
-    imageUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=80',
-    imageCaption: '오늘 탐구할 실험: 신비로운 액체의 밀도와 화학 반응 ⚗️',
+    theme: 'walnut',
+    noticeMain: '"교과서 45쪽 핵심 개념 및 준비물을 확인해 주세요."',
+    noticeSub: '질문 사항이나 메모는 수업 시작 시 바로 공유할 수 있도록 준비합니다.',
+    noticeFooter: '💡 공지: "화장실은 미리 다녀오고, 종료 1분 전 자리에 착석해 주시기 바랍니다."',
+    imageUrl: 'https://images.unsplash.com/photo-1507842229458-57763062331c?auto=format&fit=crop&w=1200&q=80',
+    imageCaption: '학습 탐구 공간: 지혜와 집중을 위한 모던 라이브러리 📖',
     videoUrl: 'https://www.youtube.com/watch?v=ScMzIvxBSi4', // 과학/자연 다큐멘터리 샘플
     videoCaption: '사전 시청 영상: 신기한 자연의 법칙 🌿',
     activeTab: 'message'
@@ -273,34 +273,45 @@
     els.ringProgress.style.strokeDashoffset = offset;
 
     // 상태 메시지 & 시각적 경고 전환
+    const modeEl = document.getElementById('widgetModeVal');
+    const nextEl = document.getElementById('widgetNextVal');
+
     if (remainingSeconds <= 0) {
       els.circularProgressWrap.classList.remove('urgent');
       els.breakStatusPill.classList.remove('urgent');
-      els.breakStatusText.textContent = '쉬는 시간 종료! 🔔';
-      els.timerSubStatus.textContent = '수업이 시작되었습니다!';
-      els.mascotBubble.textContent = '모두 자리에 착석했습니다! 👏';
+      els.breakStatusText.textContent = '수업 시작 (Class Session) 🔔';
+      els.timerSubStatus.textContent = '수업이 시작되었습니다';
+      els.mascotBubble.textContent = '수업 시작 • 학습 모드 전환';
       els.timerTargetTime.textContent = '종료되었습니다';
+      if (modeEl) modeEl.textContent = '수업 진행';
+      if (nextEl) nextEl.textContent = '집중 모드';
     } else if (remainingSeconds <= 60) {
-      // 1분 미만: 긴급 모드 (코랄 핑크 테마로 전환 및 안내)
+      // 1분 미만: 긴급 모드 (테라코타 톤으로 전환 및 안내)
       els.circularProgressWrap.classList.add('urgent');
       els.breakStatusPill.classList.add('urgent');
-      els.breakStatusText.textContent = '수업 준비 시간! ⏳';
-      els.timerSubStatus.textContent = '곧 수업이 시작돼요 (1분 전)';
-      els.mascotBubble.textContent = '자리에 앉아 책을 펼쳐요! 📖';
+      els.breakStatusText.textContent = '수업 준비 (Preparation) ⏳';
+      els.timerSubStatus.textContent = '수업 시작 1분 전 • 착석 안내';
+      els.mascotBubble.textContent = '교재 확인 및 제자리 착석 📖';
+      if (modeEl) modeEl.textContent = '착석 안내';
+      if (nextEl) nextEl.textContent = '수업 시작';
     } else if (remainingSeconds <= 180) {
       // 3분 미만
       els.circularProgressWrap.classList.remove('urgent');
       els.breakStatusPill.classList.remove('urgent');
-      els.breakStatusText.textContent = '쉬는 시간 마무리 중 📚';
-      els.timerSubStatus.textContent = '슬슬 다음 시간 준비를 해요';
-      els.mascotBubble.textContent = '교과서와 필기도구 챙기기! ✏️';
+      els.breakStatusText.textContent = '쉬는 시간 마무리 (Finalize) 📚';
+      els.timerSubStatus.textContent = '다음 교시 준비 진행';
+      els.mascotBubble.textContent = '수업 도구 및 필기도구 정돈 ✏️';
+      if (modeEl) modeEl.textContent = '준비 모드';
+      if (nextEl) nextEl.textContent = '착석 대기';
     } else {
       // 일반 편안한 쉬는 시간
       els.circularProgressWrap.classList.remove('urgent');
       els.breakStatusPill.classList.remove('urgent');
-      els.breakStatusText.textContent = '편안한 쉬는 시간 ☕';
-      els.timerSubStatus.textContent = '푹 쉬고 충전해요!';
-      els.mascotBubble.textContent = '스트레칭 쭈욱~ 물 한 잔 💧';
+      els.breakStatusText.textContent = '리프레시 & 휴식 (Recess) ☕';
+      els.timerSubStatus.textContent = '충전 및 스트레칭 시간';
+      els.mascotBubble.textContent = '가벼운 스트레칭 & 수분 섭취 💧';
+      if (modeEl) modeEl.textContent = '마인드 리셋';
+      if (nextEl) nextEl.textContent = '집중 준비';
     }
   }
 
@@ -313,7 +324,7 @@
 
     els.startPauseIcon.textContent = '⏸';
     els.startPauseText.textContent = '일시정지';
-    els.startPauseBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+    els.startPauseBtn.style.background = 'linear-gradient(135deg, #e76f51, #c4553b)';
 
     timerIntervalId = setInterval(() => {
       const now = Date.now();
@@ -477,18 +488,18 @@
   }
 
   // ==========================================
-  // 테마 관리
+  // 테마 관리 (Modern Wood Tones)
   // ==========================================
   function applyTheme(themeName) {
-    document.body.classList.remove('theme-cozy', 'theme-deepocean');
-    if (themeName === 'cozy') {
-      document.body.classList.add('theme-cozy');
-    } else if (themeName === 'deepocean') {
-      document.body.classList.add('theme-deepocean');
+    document.body.classList.remove('theme-oak', 'theme-teak');
+    if (themeName === 'oak') {
+      document.body.classList.add('theme-oak');
+    } else if (themeName === 'teak') {
+      document.body.classList.add('theme-teak');
     }
-    config.theme = themeName;
+    config.theme = themeName || 'walnut';
     els.themeChips.forEach(chip => {
-      chip.classList.toggle('active', chip.getAttribute('data-theme') === themeName);
+      chip.classList.toggle('active', chip.getAttribute('data-theme') === config.theme);
     });
   }
 
