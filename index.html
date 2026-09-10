@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>쉬는 시간 알람 & 수업 안내 | 16:9 Classroom Display</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts: Gowun Dodum & Fredoka for cute, readable typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 16:9 Aspect Ratio Display Container -->
+  <div class="screen-wrapper">
+    <main class="app-container" id="appContainer">
+      
+      <!-- Top Navigation Bar -->
+      <header class="app-header">
+        <div class="header-left">
+          <div class="class-badge" id="classBadge">
+            <span class="badge-icon">🏫</span>
+            <span class="badge-text" id="classTitleDisplay">3교시 : 즐거운 과학 시간 🧪</span>
+          </div>
+          <div class="status-pill" id="breakStatusPill">
+            <span class="pulse-dot"></span>
+            <span id="breakStatusText">편안한 쉬는 시간 ☕</span>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="date-chip" id="currentDateDisplay">
+            2026년 9월 10일 목요일
+          </div>
+          <button class="btn-icon" id="soundToggleBtn" title="소리 켜기/끄기" aria-label="음소거 토글">
+            <span id="soundIcon">🔔</span>
+          </button>
+          <button class="btn-icon" id="fullscreenBtn" title="전체화면 (F11)" aria-label="전체화면">
+            <span>⛶</span>
+          </button>
+          <button class="btn-icon btn-settings" id="openSettingsBtn" title="설정" aria-label="설정">
+            <span>⚙️</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content Grid: 16:9 balanced 2 columns -->
+      <section class="content-grid">
+        
+        <!-- LEFT COLUMN: Realtime Clock & Break Countdown Timer -->
+        <div class="column-left">
+          
+          <!-- Current Live Clock Card -->
+          <div class="glass-card current-clock-card">
+            <div class="card-caption">
+              <span class="caption-icon">⏰</span>
+              <span>현재 시간</span>
+            </div>
+            <div class="clock-display">
+              <span class="clock-ampm" id="clockAmPm">AM</span>
+              <span class="clock-digits" id="clockTime">10:40:00</span>
+            </div>
+          </div>
+
+          <!-- Break Countdown Timer Card -->
+          <div class="glass-card break-timer-card">
+            <div class="card-header-row">
+              <div class="card-caption">
+                <span class="caption-icon">⏳</span>
+                <span>쉬는 시간 남은 시간</span>
+              </div>
+              <div class="timer-target-time" id="timerTargetTime">종료 예정: 10:50</div>
+            </div>
+
+            <!-- Big Circular Timer Gauge & Mascot -->
+            <div class="timer-visual-area">
+              <div class="circular-progress-wrap">
+                <svg class="progress-ring" viewBox="0 0 280 280">
+                  <defs>
+                    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#38bdf8" />
+                      <stop offset="50%" stop-color="#818cf8" />
+                      <stop offset="100%" stop-color="#a78bfa" />
+                    </linearGradient>
+                    <linearGradient id="urgentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#fb7185" />
+                      <stop offset="100%" stop-color="#f43f5e" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Track -->
+                  <circle class="ring-bg" cx="140" cy="140" r="120" />
+                  <!-- Progress Bar -->
+                  <circle class="ring-progress" id="ringProgress" cx="140" cy="140" r="120" />
+                </svg>
+
+                <div class="timer-center-content">
+                  <div class="remaining-time" id="remainingDisplay">10:00</div>
+                  <div class="timer-sub-status" id="timerSubStatus">푹 쉬고 충전해요!</div>
+                </div>
+              </div>
+
+              <!-- Cute Animated Mascot Companion -->
+              <div class="mascot-companion" id="mascotCompanion">
+                <div class="mascot-bubble" id="mascotBubble">
+                  스트레칭 쭈욱~ 물 한 잔 💧
+                </div>
+                <!-- Cute SVG Mascot: Resting Kitty with Milk/Boba -->
+                <svg class="cute-mascot-svg" viewBox="0 0 160 140">
+                  <!-- Cozy Cloud Shadow -->
+                  <ellipse cx="80" cy="125" rx="60" ry="12" fill="rgba(15, 23, 42, 0.45)" />
+                  <!-- Cat Tail -->
+                  <path class="cat-tail" d="M 125 90 C 145 95, 150 70, 140 60 C 135 55, 130 65, 126 78 Z" fill="#93c5fd" />
+                  <!-- Cat Body -->
+                  <path d="M 35 110 C 25 70, 50 40, 80 40 C 110 40, 135 70, 125 110 C 120 125, 40 125, 35 110 Z" fill="#bfdbfe" />
+                  <!-- Belly Patch -->
+                  <ellipse cx="80" cy="85" rx="30" ry="24" fill="#ffffff" />
+                  <!-- Cat Ears -->
+                  <polygon points="45,45 35,15 65,35" fill="#93c5fd" />
+                  <polygon points="46,40 40,22 60,35" fill="#fbcfe8" />
+                  <polygon points="115,45 125,15 95,35" fill="#93c5fd" />
+                  <polygon points="114,40 120,22 100,35" fill="#fbcfe8" />
+                  <!-- Cute Head -->
+                  <ellipse cx="80" cy="50" rx="36" ry="30" fill="#bfdbfe" />
+                  <!-- Cheeks (Blush) -->
+                  <ellipse cx="58" cy="56" rx="6" ry="4" fill="#f472b6" opacity="0.6" />
+                  <ellipse cx="102" cy="56" rx="6" ry="4" fill="#f472b6" opacity="0.6" />
+                  <!-- Happy Eyes (Arcs) -->
+                  <path d="M 60 48 Q 67 42 74 48" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
+                  <path d="M 86 48 Q 93 42 100 48" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round" />
+                  <!-- Tiny Nose & Mouth -->
+                  <polygon points="80,53 78,51 82,51" fill="#f472b6" />
+                  <path d="M 76 55 Q 80 58 80 55 Q 80 58 84 55" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round" />
+                  <!-- Paws holding cup -->
+                  <ellipse cx="68" cy="82" rx="7" ry="6" fill="#ffffff" />
+                  <ellipse cx="92" cy="82" rx="7" ry="6" fill="#ffffff" />
+                  <!-- Little Drink Cup with Straw -->
+                  <rect x="74" y="74" width="12" height="18" rx="3" fill="#fef08a" />
+                  <line x1="80" y1="74" x2="84" y2="64" stroke="#f43f5e" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Timer Controls & Quick Preset Row -->
+            <div class="timer-controls-box">
+              <div class="preset-buttons-group">
+                <button class="preset-btn active" data-minutes="10">10분</button>
+                <button class="preset-btn" data-minutes="5">5분</button>
+                <button class="preset-btn" data-minutes="15">15분</button>
+                <button class="preset-btn" data-minutes="20">20분</button>
+              </div>
+
+              <div class="action-buttons-group">
+                <button class="btn-primary" id="startPauseBtn">
+                  <span class="btn-icon-symbol" id="startPauseIcon">▶</span>
+                  <span id="startPauseText">시작</span>
+                </button>
+                <button class="btn-secondary" id="resetTimerBtn" title="타이머 리셋">
+                  <span>🔄</span> 리셋
+                </button>
+                <button class="btn-secondary" id="addOneMinBtn" title="1분 연장">
+                  <span>➕</span> 1분
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Lesson Media & Information Showcase -->
+        <div class="column-right">
+          <div class="glass-card media-hub-card">
+            
+            <!-- Hub Navigation Header -->
+            <div class="hub-header">
+              <div class="hub-tabs">
+                <button class="hub-tab-btn active" data-tab="message">
+                  <span class="tab-emoji">💬</span> 수업 안내 & 문구
+                </button>
+                <button class="hub-tab-btn" data-tab="image">
+                  <span class="tab-emoji">🖼️</span> 수업 이미지
+                </button>
+                <button class="hub-tab-btn" data-tab="video">
+                  <span class="tab-emoji">🎬</span> 수업 영상
+                </button>
+              </div>
+              <div class="hub-indicator">
+                <span id="currentTabBadge">안내 모드</span>
+              </div>
+            </div>
+
+            <!-- Tab Content 1: Message & Cute Notice Board -->
+            <div class="tab-content active" id="tabContentMessage">
+              <div class="notice-board-container">
+                
+                <div class="notice-main-bubble">
+                  <div class="bubble-tag" id="noticeBadge">다음 시간 안내 📌</div>
+                  <h2 class="notice-main-text" id="noticeMainText">
+                    "교과서 45쪽을 펼치고 색연필을 준비해 주세요!"
+                  </h2>
+                  <p class="notice-sub-text" id="noticeSubText">
+                    궁금한 점은 미리 적어두면 수업 시간에 바로 질문할 수 있어요 ✨
+                  </p>
+                </div>
+
+                <!-- 3 Cute Activity / Stretching Cards -->
+                <div class="quick-tips-row">
+                  <div class="tip-card">
+                    <span class="tip-emoji">💧</span>
+                    <div class="tip-body">
+                      <h4>수분 보충</h4>
+                      <p>시원한 물 한 모금 마셔요</p>
+                    </div>
+                  </div>
+                  <div class="tip-card">
+                    <span class="tip-emoji">🧘‍♂️</span>
+                    <div class="tip-body">
+                      <h4>목·어깨 스트레칭</h4>
+                      <p>양팔을 위로 쭈욱 펴보기</p>
+                    </div>
+                  </div>
+                  <div class="tip-card">
+                    <span class="tip-emoji">👀</span>
+                    <div class="tip-body">
+                      <h4>눈 휴식</h4>
+                      <p>먼 산이나 창밖을 10초간 응시</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Teacher Message Footer Note -->
+                <div class="notice-footer-note" id="noticeFooterNote">
+                  💡 선생님 말씀: "화장실은 미리 다녀오고 종 치기 1분 전에 자리에 앉아주세요~"
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Content 2: Lesson Related Image Showcase -->
+            <div class="tab-content" id="tabContentImage">
+              <div class="image-viewer-container">
+                <div class="media-frame image-frame">
+                  <img id="lessonImage" src="" alt="수업 이미지" />
+                  <div class="empty-placeholder" id="imageEmptyPlaceholder">
+                    <div class="placeholder-icon">🎨</div>
+                    <div class="placeholder-title">수업 관련 이미지가 등록되지 않았습니다</div>
+                    <p class="placeholder-desc">우측 상단 ⚙️ 설정에서 수업 이미지 링크나 사진을 등록해보세요!</p>
+                    <button class="btn-small" onclick="document.getElementById('openSettingsBtn').click()">
+                      이미지 등록하기
+                    </button>
+                  </div>
+                </div>
+                <div class="media-caption-bar" id="imageCaptionBar">
+                  <span class="caption-tag">수업 자료</span>
+                  <span class="caption-title" id="imageCaptionText">이번 시간 함께 탐구할 주제 이미지입니다.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Content 3: Lesson Video Player -->
+            <div class="tab-content" id="tabContentVideo">
+              <div class="video-viewer-container">
+                <div class="media-frame video-frame">
+                  <div id="videoContainer" class="video-responsive-wrap">
+                    <!-- Dynamic iFrame or Video element injected here -->
+                  </div>
+                  <div class="empty-placeholder" id="videoEmptyPlaceholder">
+                    <div class="placeholder-icon">📺</div>
+                    <div class="placeholder-title">수업 관련 영상이 등록되지 않았습니다</div>
+                    <p class="placeholder-desc">유튜브 영상 링크 또는 MP4 비디오를 설정에서 등록하면 여기서 재생됩니다.</p>
+                    <button class="btn-small" onclick="document.getElementById('openSettingsBtn').click()">
+                      영상 등록하기
+                    </button>
+                  </div>
+                </div>
+                <div class="media-caption-bar" id="videoCaptionBar">
+                  <span class="caption-tag">동영상 학습</span>
+                  <span class="caption-title" id="videoCaptionText">수업 준비 영상 및 학습 자료</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Bottom Ticker / Cheering Banner -->
+      <footer class="app-footer">
+        <div class="ticker-content">
+          <span class="star-icon">⭐</span>
+          <span class="ticker-text" id="footerTickerText">
+            쉬는 시간은 머리를 식히고 몸을 깨우는 소중한 시간입니다 • 친구들과 배려하며 안전하게 보내요!
+          </span>
+          <span class="star-icon">⭐</span>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- Settings Drawer Modal -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="settings-drawer">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <span>⚙️</span> 알람 & 수업 화면 설정
+        </div>
+        <button class="btn-close" id="closeSettingsBtn">&times;</button>
+      </div>
+
+      <div class="drawer-body">
+        
+        <!-- Section: Class Info -->
+        <div class="setting-group">
+          <h3>🏫 수업 정보</h3>
+          <div class="form-item">
+            <label for="inputClassTitle">수업 제목 / 교시</label>
+            <input type="text" id="inputClassTitle" placeholder="예: 3교시 : 즐거운 과학 시간 🧪" />
+          </div>
+        </div>
+
+        <!-- Section: Timer & Alarm -->
+        <div class="setting-group">
+          <h3>⏰ 타이머 & 알람음</h3>
+          <div class="form-item">
+            <label for="inputDefaultMinutes">기본 쉬는 시간 (분)</label>
+            <input type="number" id="inputDefaultMinutes" min="1" max="60" value="10" />
+          </div>
+          <div class="form-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="checkWarningSound" checked />
+              <span>종료 1분 전 예비 차임벨 울리기 🔔</span>
+            </label>
+          </div>
+          <div class="form-item sound-test-row">
+            <label>차임벨 볼륨</label>
+            <input type="range" id="volumeSlider" min="0" max="100" value="80" />
+            <button class="btn-secondary btn-inline" id="testChimeBtn">🔔 벨소리 시험</button>
+          </div>
+        </div>
+
+        <!-- Section: Notice & Message -->
+        <div class="setting-group">
+          <h3>💬 공지 및 문구 설정</h3>
+          <div class="form-item">
+            <label for="inputNoticeMain">주요 안내 문구</label>
+            <input type="text" id="inputNoticeMain" placeholder="교과서와 필기도구를 준비해 주세요!" />
+          </div>
+          <div class="form-item">
+            <label for="inputNoticeSub">보조 안내 문구</label>
+            <input type="text" id="inputNoticeSub" placeholder="스트레칭을 하며 눈의 피로를 풀어보세요 ✨" />
+          </div>
+          <div class="form-item">
+            <label for="inputNoticeFooter">선생님 전달 사항</label>
+            <input type="text" id="inputNoticeFooter" placeholder="종 치기 1분 전에 자리에 착석하기!" />
+          </div>
+        </div>
+
+        <!-- Section: Image Settings -->
+        <div class="setting-group">
+          <h3>🖼️ 수업 이미지 설정</h3>
+          <div class="form-item">
+            <label for="inputImageUrl">이미지 웹 URL</label>
+            <input type="url" id="inputImageUrl" placeholder="https://example.com/image.jpg" />
+          </div>
+          <div class="form-item">
+            <label>또는 내 컴퓨터에서 사진 파일 선택</label>
+            <input type="file" id="inputImageFile" accept="image/*" />
+          </div>
+          <div class="form-item">
+            <label for="inputImageCaption">이미지 설명 문구</label>
+            <input type="text" id="inputImageCaption" placeholder="수업 관련 다이어그램 설명" />
+          </div>
+        </div>
+
+        <!-- Section: Video Settings -->
+        <div class="setting-group">
+          <h3>🎬 수업 영상 설정</h3>
+          <div class="form-item">
+            <label for="inputVideoUrl">유튜브 링크 또는 영상 URL</label>
+            <input type="url" id="inputVideoUrl" placeholder="https://www.youtube.com/watch?v=..." />
+          </div>
+          <div class="form-item">
+            <label>또는 내 컴퓨터에서 비디오 파일 선택 (MP4, WebM)</label>
+            <input type="file" id="inputVideoFile" accept="video/*" />
+          </div>
+          <div class="form-item">
+            <label for="inputVideoCaption">영상 설명 문구</label>
+            <input type="text" id="inputVideoCaption" placeholder="수업 사전 학습 영상" />
+          </div>
+        </div>
+
+        <!-- Section: Background Theme Tone -->
+        <div class="setting-group">
+          <h3>🎨 블루 배경 톤 미세 조정</h3>
+          <div class="theme-options-grid">
+            <button class="theme-chip active" data-theme="midnight">
+              <span class="color-dot" style="background:#0f172a;"></span>
+              차분한 미드나이트 블루
+            </button>
+            <button class="theme-chip" data-theme="cozy">
+              <span class="color-dot" style="background:#1e293b;"></span>
+              포근한 네이비 블루
+            </button>
+            <button class="theme-chip" data-theme="deepocean">
+              <span class="color-dot" style="background:#0b192c;"></span>
+              심해 딥오션 블루
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="drawer-footer">
+        <button class="btn-secondary" id="resetDefaultsBtn">기본값 복원</button>
+        <button class="btn-primary" id="saveSettingsBtn">설정 저장 및 적용</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
